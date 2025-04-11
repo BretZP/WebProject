@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
       <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4">
         <div className="text-lg font-semibold">
-          <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
+          <a href="/non-authenticated-user" className="color-text no-underline hover:opacity-80 transition-opacity">
             Home
           </a>
         </div>
