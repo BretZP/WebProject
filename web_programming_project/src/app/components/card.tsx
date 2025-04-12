@@ -2,6 +2,7 @@ interface CardProps {
     title: string;
     notes: string;
     chords: string;
+    songs: string;
     imageUrl?: string;
     imageAlt?: string;
     className?: string;
@@ -12,6 +13,7 @@ const Card = ({
                   title,
                   notes,
                   chords,
+                  songs,
                   imageUrl,
                   imageAlt,
                   className = "",
@@ -37,6 +39,9 @@ const Card = ({
             )}
             {chords && (
                 <p className="text-gray-600">{chords}</p>
+            )}
+            {chords && (
+                <p className="text-gray-600">{songs}</p>
             )}
             {children}
         </div>
