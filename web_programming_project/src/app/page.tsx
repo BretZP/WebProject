@@ -4,15 +4,21 @@ import Navbar from "./components/Navbar";
 export default function Home() {
   return (
     
-    <div className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+    <div className="min-h-screen ">
       
       <Navbar />
 
      
       <main className="h-screen"> 
-
+        
         
         <section className="bg-black border-b border-gray-400 h-3/8"> {/*  Box*/}
+        <img className="z-0 h-3/8 w-480 opacity-40  absolute  "
+          src="/MusTheory.jpg" 
+          alt="Background music sheet"
+          
+        />
+         
           <div className="justify-content content-center place-content-center   p-3 text-center">
             <h1 className="text-[80px] font-bold justify-end p-30 text-center ">Scale Explorer</h1>
 
@@ -31,8 +37,9 @@ export default function Home() {
            
             <p className="pt-15">
               Enter any musical note, and the app will show you scales that use
-              that note. It’s a quick and easy way to learn music theory, understand how notes fit into scales,
-              and find scales that match your playing style or creative ideas.
+              that note. It’s a quick and easy way to learn, get inspired, or find scales. You 
+              explore different scale types like major and minor. It's a quick and easy way to learn music theory
+              understand how notes fit into scales, and find scales that match your playing style or creative ideas.
               You can also favorite scales that you like for easy access and edit the scale components by adding
               examples of songs in that key.
             </p> 
