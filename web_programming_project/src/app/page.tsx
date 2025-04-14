@@ -9,44 +9,40 @@ export default function Home() {
       <Navbar />
 
      
-      <main className="h-screen"> 
-        
-        
-        <section className="bg-black border-b border-gray-400 h-3/8"> {/*  Box*/}
-        <img className="z-0 h-3/8 w-480 opacity-40  absolute  "
-          src="/MusTheory.jpg" 
-          alt="Background music sheet"
-          
-        />
-         
-          <div className="justify-content content-center place-content-center   p-3 text-center">
-            <h1 className="text-[80px] font-bold justify-end p-30 text-center ">Scale Explorer</h1>
+      <main className="h-screen flex flex-col">
 
-          
-          </div>
-        </section>
+ 
+  <section className="relative bg-black border-b border-gray-400 h-[40vh] flex items-center justify-center">
+    <img
+      src="/MusTheory.jpg"
+      alt="Background"
+      className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none z-0"
+    />
+    <div className="relative z-10 text-center">
+      <h1 className="text-[6vw] md:text-[80px] font-bold text-white">Scale Explorer</h1>
+    </div>
+  </section>
 
-       
-        <section className="bg-gray-100 dark:bg-[#1e1e1e] h-5/8  "> {/* Gray Box*/}
-          <div className="text-[30px]   px-80 ">
-          <input
-              type="text"
-              placeholder="Search For Scale"
-              className="ml-100 mt-10 px-4 py-2  rounded  "
-            />
-           
-            <p className="pt-15">
-              Enter any musical note, and the app will show you scales that use
+ 
+  <section className="flex-1 bg-gray-100 dark:bg-[#1e1e1e] py-12">
+    <div className="max-w-4xl mx-auto px-6 text-[20px] text-[var(--text)]">
+      <input
+        type="text"
+        placeholder="Search For Scale"
+        className="block mx-auto px-4 py-2 mt-6 rounded bg-white text-black dark:bg-[#333] dark:text-white w-full max-w-md"
+      />
+      <p className="mt-8 leading-relaxed">
+            Enter any musical note, and the app will show you scales that use
               that note. It’s a quick and easy way to learn, get inspired, or find scales. You 
               explore different scale types like major and minor. It's a quick and easy way to learn music theory
               understand how notes fit into scales, and find scales that match your playing style or creative ideas.
               You can also favorite scales that you like for easy access and edit the scale components by adding
               examples of songs in that key.
-            </p> 
-          </div>
-        </section>
-        
-      </main>
+      </p>
+    </div>
+  </section>
+
+</main>
     </div>
   );
 }
