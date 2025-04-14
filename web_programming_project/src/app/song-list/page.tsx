@@ -7,11 +7,11 @@ import cmajorImage from '../assets/cmajor.PNG';
 import fminorImage from '../assets/fminor.PNG';
 import Navbar from "@/app/components/Navbar";
 
-interface NonAuthenticatedUserPageProps {
+interface SongListProps {
     isLoggedIn: boolean;
 }
 
-const NonAuthenticatedUserPage = ({ isLoggedIn = true }: NonAuthenticatedUserPageProps)  => {
+const SongList = ({ isLoggedIn = true }: SongListProps)  => {
     
 
     const scaleCards = [
@@ -69,7 +69,7 @@ const NonAuthenticatedUserPage = ({ isLoggedIn = true }: NonAuthenticatedUserPag
                     >
                         {isLoggedIn && (
                             <a
-                                href={`/`}
+                                href={`../formSubmit`}
                                 className="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-green-700 transition-colors block text-center"
                             >
                                 Add songs in this key
@@ -83,4 +83,4 @@ const NonAuthenticatedUserPage = ({ isLoggedIn = true }: NonAuthenticatedUserPag
     );
 };
 
-export default NonAuthenticatedUserPage;
+export default SongList;

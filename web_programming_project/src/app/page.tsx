@@ -33,7 +33,7 @@ export default function Home() {
   <section className="flex-1 bg-gray-100 dark:bg-[#1e1e1e] py-5">
   <div className="max-w-4xl mx-auto px-6 text-[20px] text-[var(--text)]">
     <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mt-4">
-      <a href="/non-authenticated-user"
+      <a href="/song-list"
       className="px-4 py-2 mt-2 bg-[var(--button-background)] text-[var(--button-text)] rounded hover:opacity-90 transition whitespace-nowrap">
         Search For Scale
         
