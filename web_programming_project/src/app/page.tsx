@@ -16,22 +16,22 @@ export default function Home() {
     <img
       src="/MusTheory.jpg"
       alt="Background"
-      className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none z-0"
+      className="absolute inset-0 w-full h-full object-cover opacity-40  z-0"
     />
     <div className="relative z-10 text-center">
-      <h1 className="text-[6vw] md:text-[80px] font-bold text-white">Scale Explorer</h1>
+      <h1 className="text-[6vw] md:text-[65px] font-bold text-white">Scale Explorer</h1>
     </div>
   </section>
 
  
-  <section className="flex-1 bg-gray-100 dark:bg-[#1e1e1e] py-12">
-    <div className="max-w-4xl mx-auto px-6 text-[20px] text-[var(--text)]">
+  <section className="flex-1 bg-gray-100 dark:bg-[#1e1e1e] py-5">
+    <div className="max-w-4xl mx-auto px-15 text-[20px] text-[var(--text)]">
       <input
         type="text"
         placeholder="Search For Scale"
-        className="block mx-auto px-4 py-2 mt-6 rounded bg-white text-black dark:bg-[#333] dark:text-white w-full max-w-md"
+        className="block mx-auto px-4 py-2 mt-5 rounded bg-white text-black dark:bg-[#333] dark:text-white w-full max-w-md"
       />
-      <p className="mt-8 leading-relaxed">
+      <p className="mt-4 leading-relaxed">
             Enter any musical note, and the app will show you scales that use
               that note. It’s a quick and easy way to learn, get inspired, or find scales. You 
               explore different scale types like major and minor. It's a quick and easy way to learn music theory
