@@ -19,8 +19,14 @@ export default function Home() {
       className="absolute inset-0 w-full h-full object-cover opacity-40  z-0"
     />
     <div className="relative z-10 text-center">
-      <h1 className="text-[6vw] md:text-[65px] font-bold text-white">Scale Explorer</h1>
-    </div>
+    <Image
+      src="/scale_explorer.png"  
+      alt="Scale Explorer Logo"
+      width={600}      
+      height={500}
+      className="mx-auto invert dark:invert-0 pt-10"
+    />
+  </div>
   </section>
 
  
