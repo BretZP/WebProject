@@ -4,8 +4,7 @@ import React from "react";
 import "@/app/globals.css";
 import { HomeIcon } from "@heroicons/react/24/solid";
 import { useState } from 'react';
-import Button from "@/app/components/Button";
-
+import Image from "next/image";
 
 interface NavbarProps {
   onBooleanChange: (value: boolean) => void;
@@ -28,6 +27,18 @@ const Navbar = () => {
           <HomeIcon className="h-6 w-6" />
 
 
+        </a>
+      </div>
+
+            <div className="flex-1 flex justify-center relative z-20">
+        <a href="/" className="cursor-pointer inline-block">
+          <Image
+            src="/scale_explorer2.png"
+            alt="Logo"
+            width={220}
+            height={40}
+            className="object-contain"
+          />
         </a>
       </div>
 
