@@ -11,7 +11,7 @@ interface SongListProps {
     isLoggedIn: boolean;
 }
 
-const SongList = ({ isLoggedIn = true }: SongListProps)  => {
+const SongList = ({ isLoggedIn = false }: SongListProps)  => {
     
 
     const scaleCards = [
@@ -69,7 +69,7 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
                     >
                         {isLoggedIn && (
                             <a
-                                href={`../formSubmit`}
+                                href={`../form-submit`}
                                 className="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-green-700 transition-colors block text-center"
                             >
                                 Add songs in this key
