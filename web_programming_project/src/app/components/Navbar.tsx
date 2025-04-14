@@ -5,6 +5,7 @@ import "@/app/globals.css";
 import { HomeIcon } from "@heroicons/react/24/solid"; 
 import {useState} from 'react';
 import Button from "@/app/components/Button";
+import Image from "next/image";
 
 
 interface NavbarProps {
@@ -31,6 +32,18 @@ const Navbar = () => {
           </a>
         </div>
         
+        <div className="flex-1 flex justify-center relative z20 ">
+            <a href="/" className="cursor-pointer inline-block">
+              <Image
+                src="/scale_explorer2.png"
+                alt="Logo"
+                width={220}
+                height={40}
+                className="object-contain "
+              />
+            </a>
+          </div>
+
         <ul className="flex list-none gap-6 m-0 p-0">
           <li>
             {/* <a
