@@ -28,8 +28,20 @@ const Navbar = () => {
         <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
           <HomeIcon className="h-6 w-6" />
 
+        </a>
+      </div>
 
+      <ul className="flex list-none gap-6 m-0 p-0">
+        <li>
+          <a
+            href="/register"
+            className="text-sm text-foreground no-underline hover:opacity-80 transition-opacity font-[family-name:var(--font-geist-mono)]"
+            onClick={handleLogin}
+          >
+            Register / Login
           </a>
+          
+
         </div>
         <div className="flex-1 flex justify-center relative z-20">
    
@@ -56,6 +68,11 @@ const Navbar = () => {
               <Button onClick={handleLogin}>{isLoggedIn ? "Login" : "Logout"}</Button>
           </li>
         </ul>
+
+          {/* <Button onClick={handleLogin}>{isLoggedIn ? "Login" : "Logout"}</Button> */}
+        </li>
+      </ul>
+
 
     </nav>
   );
