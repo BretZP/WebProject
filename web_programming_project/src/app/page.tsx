@@ -25,22 +25,29 @@ export default function Home() {
 
  
   <section className="flex-1 bg-gray-100 dark:bg-[#1e1e1e] py-5">
-    <div className="max-w-4xl mx-auto px-15 text-[20px] text-[var(--text)]">
+  <div className="max-w-4xl mx-auto px-6 text-[20px] text-[var(--text)]">
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mt-4">
       <input
         type="text"
         placeholder="Search For Scale"
-        className="block mx-auto px-4 py-2 mt-5 rounded bg-white text-black dark:bg-[#333] dark:text-white w-full max-w-md"
+        className="px-4 py-2 mt-2 rounded bg-white text-black dark:bg-[#333] dark:text-white w-full max-w-md"
       />
-      <p className="mt-4 leading-relaxed">
-            Enter any musical note, and the app will show you scales that use
-              that note. It’s a quick and easy way to learn, get inspired, or find scales. You 
-              explore different scale types like major and minor. It's a quick and easy way to learn music theory
-              understand how notes fit into scales, and find scales that match your playing style or creative ideas.
-              You can also favorite scales that you like for easy access and edit the scale components by adding
-              examples of songs in that key.
-      </p>
+      <a href="/non-authenticated-user"  
+          className="px-4 py-2 mt-2 bg-[var(--button-background)] text-[var(--button-text)] rounded hover:opacity-90 transition whitespace-nowrap"
+      > Search
+      </a>
     </div>
-  </section>
+
+    <p className="mt-8 leading-relaxed">
+      Enter any musical note, and the app will show you scales that use that note.
+      It’s a quick and easy way to learn, get inspired, or find scales.
+      You can explore different scale types like major and minor. It's a quick and
+      easy way to learn music theory, understand how notes fit into scales, and find
+      scales that match your playing style or creative ideas. You can also favorite scales
+      that you like for easy access and edit the scale components by adding examples of songs in that key.
+    </p>
+  </div>
+</section>
 
 </main>
     </div>
