@@ -79,7 +79,7 @@ input {
   border-radius: 8px;
 }
 
-.RegisterLogin {
+/* .RegisterLogin {
   height: 55vh;
   display: flex;
   flex-direction: column;
@@ -90,4 +90,22 @@ input {
   padding: 10px;
   border-radius: 8px;
   text-align: center;
+} */
+
+
+.RegisterLogin {
+  height: 50%;
+  width: 50%;
+  min-height: 410px;
+  display: flex;
+  margin: 12.5% 12.5%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent-background);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  /* top: 25%;
+  left: 25%; */
 }

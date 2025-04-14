@@ -1,11 +1,23 @@
 'use client';
 
 import React from "react";
+import {useState} from 'react';
 import "@/app/globals.css";
 
+interface NavbarProps {
+  isLoggedIn: boolean;
+}
+
 const Navbar = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(prev => !prev);
+  }
+
   return (
-      <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4 fixed">
+      <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4 fixed top-0">
         <div className="text-lg font-semibold">
           <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
             Home
