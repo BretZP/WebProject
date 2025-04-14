@@ -5,12 +5,15 @@ import gmajorImage from '../assets/gmajor.PNG';
 import cmajorImage from '../assets/cmajor.PNG';
 // @ts-ignore
 import fminorImage from '../assets/fminor.PNG';
+import Navbar from "@/app/components/Navbar";
 
 interface NonAuthenticatedUserPageProps {
     isLoggedIn: boolean;
 }
 
 const NonAuthenticatedUserPage = ({ isLoggedIn = true }: NonAuthenticatedUserPageProps)  => {
+    
+
     const scaleCards = [
         {
             title: "C Major",
@@ -43,13 +46,15 @@ const NonAuthenticatedUserPage = ({ isLoggedIn = true }: NonAuthenticatedUserPag
     ];
     return (
 
-        <div className="min-h-screen flex items-center justify-center p-4 bg-black">
-            <div className="container max-w-2xl flex flex-col gap-6 text-white">
+        
+        <div>
+            <Navbar />
+            <div className="min-h-screen bg-black pt-16 p-4"> {/* Added pt-16 for top padding */}
+            <div className="container max-w-2xl mx-auto flex flex-col gap-6 text-white">
                 <input
                     type="text"
                     placeholder="Search for a scale"
                     className="w-full px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder:text-gray-400 bg-transparent"
-                    // disabled
                 />
                 {scaleCards.map((card, index) => (
                     <Card
@@ -73,6 +78,7 @@ const NonAuthenticatedUserPage = ({ isLoggedIn = true }: NonAuthenticatedUserPag
                     </Card>
                 ))}
             </div>
+        </div>
         </div>
     );
 };
