@@ -14,7 +14,7 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
             title: "C Major",
             notes: "Notes: C, D, E, F, G, A, B",
             chords: ["Cmaj7", "Dm7", "Em7", "Fmaj7", "G7", "Am7", "Bdim7"],
-            songs: ["Let it be, Beatles", "Don't look back in Anger, Oasis"],
+            songs: ["Let it be, Beatles", "Californication, Red Hot Chili Peppers"],
             imageUrl: cmajorImage.src,
             imageAlt: "image of guitar tabs of C Major",
             className: "hover:shadow-lg transition-shadow"
@@ -32,7 +32,7 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
             title: "F Minor",
             notes: "Notes: F, G, A♭, B♭, C, D♭, E♭",
             chords: ["Fm", "Gdim", "A♭", "B♭m", "Cm", "D♭", "E♭"],
-            songs: ["21 guns, Green Day"],
+            songs: ["Dream On, Aerosmith"],
             imageUrl: fminorImage.src,
             imageAlt: "F minor scale",
             className: "hover:shadow-lg transition-shadow",
