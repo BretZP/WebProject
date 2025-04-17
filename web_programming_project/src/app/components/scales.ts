@@ -1,7 +1,3 @@
-import cmajorImage from '../assets/cmajor.PNG';
-import gmajorImage from '../assets/gmajor.PNG';
-import fminorImage from '../assets/fminor.PNG';
-
 export interface ScaleCard {
     title: string;
     notes: string;
