@@ -1,24 +1,66 @@
 'use client'
+import { useState } from 'react';
 import Card from '../components/card';
 import Navbar from "@/app/components/Navbar";
-import { scaleCards, ScaleCard} from "@/app/components/scales";
+import { scaleCards, ScaleCard } from "@/app/components/scales";
 
 interface SongListProps {
     isLoggedIn: boolean;
 }
+
 const SongList = ({ isLoggedIn = true }: SongListProps)  => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+
+    const filteredScales = scaleCards.filter(card => {
+        const trimmedQuery = searchQuery.trim().toLowerCase();
+        if (!trimmedQuery) return true;
+
+        // Normalize search query
+        const normalizedQuery = trimmedQuery
+            .replace(/sharp/g, '#')
+            .replace(/flat/g, 'b')
+            .replace(/♭/g, 'b')
+            .replace(/([a-g])[ #]*([#b])/gi, '$1$2') // Fix spacing
+            .replace(/\s/g, '')
+            .toLowerCase();
+
+        // Check notes
+        const notesString = card.notes.split('Notes: ')[1];
+        const individualNotes = notesString.split(', ')
+            .map(note => note.trim().toLowerCase()
+                .replace(/♭/g, 'b'));
+        const hasNoteMatch = individualNotes.some(note => note === normalizedQuery);
+
+        // Check chords with full normalization
+        const hasChordMatch = card.chords.some(chord => {
+            const normalizedChord = chord
+                .toLowerCase()
+                .replace(/sharp/g, '#')
+                .replace(/♭/g, 'b')
+                .replace(/([a-g])[ #]*([#b])/g, '$1$2')
+                .replace(/\s/g, '');
+
+            return normalizedChord.includes(normalizedQuery);
+        });
+
+        return hasNoteMatch || hasChordMatch;
+    });
+
     return (
         <div>
             <Navbar/>
-            <div className="min-h-screen bg-black pt-16 p-4"> {/* Added pt-16 for top padding */}
+            <div className="min-h-screen bg-black pt-16 p-4">
                 <div className="container max-w-2xl mx-auto flex flex-col gap-6 text-white">
                     <div></div>
                     <input
                         type="text"
                         placeholder="Search for a scale"
                         className="w-full px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder:text-gray-400 bg-transparent"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    {scaleCards.map((card: ScaleCard, index) => (
+                    {filteredScales.map((card: ScaleCard, index) => (
                         <Card
                             key={index}
                             title={card.title}
@@ -39,7 +81,6 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
                             )}
                         </Card>
                     ))}
-
                 </div>
             </div>
         </div>
