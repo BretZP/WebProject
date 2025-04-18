@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react';
-import Card from '../components/card';
-import Navbar from "@/app/components/Navbar";
-import { scaleCards, ScaleCard } from "@/app/components/scales";
+import Card from '../../components/card';
+import Navbar from "@/components/Navbar";
+import { scaleCards, ScaleCard } from "@/components/scales";
 
 interface SongListProps {
     isLoggedIn: boolean;

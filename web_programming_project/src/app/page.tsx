@@ -1,7 +1,9 @@
 import Image from "next/image";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar";
+import connectMongoDB from "../mongodb";
 
 export default function Home() {
+  connectMongoDB();
   return (
     
     <div className="min-h-screen">

@@ -2,7 +2,7 @@
 
 
 import { useState } from 'react';
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 
 
 export default function FormSubmit() {

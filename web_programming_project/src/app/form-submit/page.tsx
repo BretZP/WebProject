@@ -1,4 +1,4 @@
-import FormSubmit from "@/app/components/FormSubmit";
+import FormSubmit from "@/components/FormSubmit";
 
 
 export default function FormPage() {

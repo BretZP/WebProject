@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import React from 'react';
 import '@/app/globals.css';
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 
 interface NewUser {
     _id: number;
