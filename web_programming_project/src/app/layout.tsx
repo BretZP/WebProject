@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="min-h-full" lang="en">
+    <html className="min-h-full overflow-hidden" lang="en">
       <body>
         <Navbar />
         {children}
