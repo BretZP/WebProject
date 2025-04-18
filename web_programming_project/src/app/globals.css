@@ -13,14 +13,6 @@
 }
 
 
-:root {
-  --background: #ffffff;
-  --card-background: #999999;
-  --accent-background: #999999;
-  --text: #0a0a0a;
-  --button-background: #0a0a0a;
-  --button-text: #ffffff;
-}
 
 /* @theme inline {
   --color-background: var(--background);
@@ -29,18 +21,17 @@
   --font-mono: var(--font-geist-mono);
 } */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --card-background: #151515;
-    --accent-background: #151515;
-    --text: #ffffff;
-    --button-background: #ffffff;
-    --button-text: #000000;
-  }
+:root {
+  --background: #000000;
+  --card-background: #151515;
+  --accent-background: #151515;
+  --text: #ffffff;
+  --button-background: #ffffff;
+  --button-text: #000000;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -57,6 +48,7 @@ body {
   color: var(--color-url);
   text-decoration: underline;
 }
+
 .link a:visited {
   color: var(--color-url-clicked);
   text-decoration: underline;
