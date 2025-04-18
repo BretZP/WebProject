@@ -71,12 +71,11 @@ input {
   border-radius: 8px;
 }
 
-.RegisterLogin {
+.FormBox {
   height: 50%;
   width: 50%;
   min-height: 410px;
   display: flex;
-  margin: 12.5% 12.5%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -85,4 +84,8 @@ input {
   border-radius: 8px;
   text-align: center;
   left: 25%;
+}
+
+.RegisterLogin {
+  margin: 12.5% 12.5%;
 }
