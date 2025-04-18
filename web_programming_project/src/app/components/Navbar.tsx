@@ -45,11 +45,11 @@ const Navbar = () => {
       <ul className="flex list-none gap-6 m-0 p-0">
         <li>
           <a
-            href="/register"
+            href="/login"
             className="text-sm text-foreground no-underline hover:opacity-80 transition-opacity font-[family-name:var(--font-geist-mono)]"
             onClick={handleLogin}
           >
-            Register / Login
+            Login
           </a>
           {/* <Button onClick={handleLogin}>{isLoggedIn ? "Login" : "Logout"}</Button> */}
         </li>
