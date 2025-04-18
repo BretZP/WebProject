@@ -1,14 +1,25 @@
-import FormSubmitPage from "@/app/components/FormSubmit";
-import Navbar from "@/app/components/Navbar";
+import FormSubmit from "@/app/components/FormSubmit";
 
 
 export default function FormPage() {
- return (
-   <>
+  //  return (
+  //      <main className="p-4">
+  //        <FormSubmitPage />
+  //      </main>
+  //  );
+  return (
+    <div className="flex flex-col items-center min-h-screen bg-background">
+      <div
+        className="w-full h-60 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('MusTheory.jpg/')"
+        }}
+      >
+      </div>
 
-     <main className="p-4">
-       <FormSubmitPage />
-     </main>
-   </>
- );
+      <div className="FormBox FormSubmit">
+        <FormSubmit />
+      </div>
+    </div>
+  );
 }
