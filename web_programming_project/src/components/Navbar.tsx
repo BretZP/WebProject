@@ -30,8 +30,8 @@ const Navbar = () => {
         </a>
       </div>
 
-            <div className="flex-1 flex justify-center relative z-20">
-        <a href="/" className="cursor-pointer inline-block">
+      <div className="flex-1 flex justify-center relative z-20">
+        <a href="/scale-list" className="cursor-pointer inline-block">
           <Image
             src="/scale_explorer2.png"
             alt="Logo"
