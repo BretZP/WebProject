@@ -13,36 +13,47 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
     const [searchQuery, setSearchQuery] = useState('');
 
 
+
     const filteredScales = scaleCards.filter(card => {
         const trimmedQuery = searchQuery.trim().toLowerCase();
         if (!trimmedQuery) return true;
 
-        // Normalize search query
-        const normalizedQuery = trimmedQuery
-            .replace(/sharp/g, '#')
-            .replace(/flat/g, 'b')
-            .replace(/♭/g, 'b')
-            .replace(/([a-g])[ #]*([#b])/gi, '$1$2') // Fix spacing
-            .replace(/\s/g, '')
-            .toLowerCase();
+        const searchTerms = trimmedQuery.split(/\s+/);
 
-        // Check notes
-        const notesString = card.notes.split('Notes: ')[1];
-        const individualNotes = notesString.split(', ')
+        const normalizedNotes = searchTerms.map(term =>
+            term.replace(/sharp/g, '#')
+                .replace(/flat/g, 'b')
+                .replace(/♭/g, 'b')
+                .replace(/([a-g])[ #]*([#b])/gi, '$1$2')
+                .replace(/\s/g, '')
+                .toLowerCase()
+        );
+
+        const scaleNotes = card.notes.split('Notes: ')[1]
+            .split(', ')
             .map(note => note.trim().toLowerCase()
                 .replace(/♭/g, 'b'));
-        const hasNoteMatch = individualNotes.some(note => note === normalizedQuery);
 
-        // Check chords with full normalization
+        if (searchTerms.length > 1) {
+            return normalizedNotes.every(note => scaleNotes.includes(note));
+        }
+
+        const normalizedQuery = normalizedNotes[0];
+
+        const hasNoteMatch = scaleNotes.includes(normalizedQuery);
+
         const hasChordMatch = card.chords.some(chord => {
             const normalizedChord = chord
                 .toLowerCase()
                 .replace(/sharp/g, '#')
+                .replace(/flat/g, 'b')
                 .replace(/♭/g, 'b')
                 .replace(/([a-g])[ #]*([#b])/g, '$1$2')
                 .replace(/\s/g, '');
 
-            return normalizedChord.includes(normalizedQuery);
+            const rootMatch = normalizedChord.match(/^[a-g][#b]?/);
+            const chordRoot = rootMatch ? rootMatch[0] : '';
+            return chordRoot === normalizedQuery || normalizedChord === normalizedQuery;
         });
 
         return hasNoteMatch || hasChordMatch;
