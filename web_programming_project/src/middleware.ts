@@ -1,17 +1,27 @@
-import {NextRequest, NextResponse} from "next/server";
-import { auth } from "./auth";
+import { NextRequest, NextResponse } from "next/server";
+import { authConfig } from "./auth.config";
+import NextAuth from "next-auth";
 
-const middleware = (request: NextRequest) => {
-    const { pathname } = request.nextUrl;
-  
-    console.log(`Restricted route hit: ${pathname}`);
-    console.log("Can't go here!");
-  
+const { auth } = NextAuth(authConfig);
+
+const middleware = async (request: NextRequest) => {
+  const { pathname } = request.nextUrl;
+  const session = await auth();
+  const isAuthenticated = !!session?.user;
+
+  console.log("isAuthenticated:", isAuthenticated, "path:", pathname);
+
+  const publicPaths = ["/", "/login", "/register"];
+
+  if (!isAuthenticated && !publicPaths.includes(pathname)) {
     return NextResponse.redirect(new URL("/", request.url));
-  };
-  
-  export const config = {
-    matcher: ["/form-submit"],
-  };
+  }
+
+  return NextResponse.next();
+};
+
+export const config = {
+  matcher: ["/form-submit"],
+};
 
 export default middleware;

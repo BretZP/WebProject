@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { doCredentialLogin } from '@/actions';
+import { doCredentialLogin } from '@/app/actions';
 import Button from "@/components/Button";
 
 export default function LoginForm() {
@@ -24,10 +24,10 @@ export default function LoginForm() {
       if (response?.error) {
         setError("Invalid credentials");
       } else {
-        router.push("/form-submit");
+        router.push("/scale-list");
       }
     } catch (err) {
-      console.error(err);
+      console.error("LOGIN ERROR: " + err);
       setError("Something went wrong.");
     }
   };

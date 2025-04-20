@@ -3,24 +3,42 @@
 import React from "react";
 import "@/app/globals.css";
 import { HomeIcon } from "@heroicons/react/24/solid";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
+import { Session } from "next-auth";
+import { doLogout } from "../app/actions/index";
+import Button from "@/components/Button"
+import { useRouter } from 'next/navigation';
+
+// interface Session {
+//   user?: {
+//     name: string;
+//     email?: string;
+//     image?: string;
+//   };
+// }
 
 interface NavbarProps {
-  onBooleanChange: (value: boolean) => void;
+  session: Session | null;
 }
 
-const Navbar = () => {
-
+const Navbar = ({ session }: NavbarProps) => {
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    setIsLoggedIn(prev => !prev);
-    console.log(isLoggedIn);
+  useEffect(() => {
+    setIsLoggedIn(!!session?.user);
+  }, [session]);
+
+  const handleLogout = () => {
+    doLogout();
+    setIsLoggedIn(!!session?.user);
+    console.log("User logged out");
   }
 
   return (
     <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4 fixed z-10">
+      {/* left - home button */}
       <div className="text-lg font-semibold">
 
         <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
@@ -30,8 +48,9 @@ const Navbar = () => {
         </a>
       </div>
 
+      {/* middle - logo */}
       <div className="flex-1 flex justify-center relative z-20">
-        <a href="/scale-list" className="cursor-pointer inline-block">
+        <a href="/" className="cursor-pointer inline-block">
           <Image
             src="/scale_explorer2.png"
             alt="Logo"
@@ -42,8 +61,28 @@ const Navbar = () => {
         </a>
       </div>
 
+      {/* right - auth status */}
       <ul className="flex list-none gap-6 m-0 p-0">
-        <li>
+        {isLoggedIn && session?.user ? (
+          <>
+            <li>
+              <span>Welcome, {session.user?.name}!</span>
+            </li>
+            <li>
+              <Button onClick={handleLogout}>Logout</Button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <a
+              href="/login"
+              className="text-sm text-foreground no-underline hover:opacity-80 transition-opacity font-[family-name:var(--font-geist-mono)]"
+            >
+              Login
+            </a>
+          </li>
+        )}
+        {/* <li>
           <a
             href="/login"
             className="text-sm text-foreground no-underline hover:opacity-80 transition-opacity font-[family-name:var(--font-geist-mono)]"
@@ -51,8 +90,7 @@ const Navbar = () => {
           >
             Login
           </a>
-          {/* <Button onClick={handleLogin}>{isLoggedIn ? "Login" : "Logout"}</Button> */}
-        </li>
+        </li> */}
       </ul>
 
     </nav>

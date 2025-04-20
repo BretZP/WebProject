@@ -60,7 +60,6 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
 
     return (
         <div>
-            <Navbar/>
             <div className="min-h-screen bg-black pt-16 p-4">
                 <div className="container max-w-2xl mx-auto flex flex-col gap-6 text-white">
                     <div></div>

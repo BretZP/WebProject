@@ -30,6 +30,7 @@ export const {
 
           if (!user) {
             console.log("User not found");
+            alert("User not found");
             return null;
           }
 

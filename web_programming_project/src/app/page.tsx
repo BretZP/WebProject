@@ -7,10 +7,6 @@ export default function Home() {
   return (
     
     <div className="min-h-screen">
-      
-      <Navbar />
-
-     
       <main className="h-screen flex flex-col">
 
  
@@ -24,8 +20,8 @@ export default function Home() {
     <Image
       src="/scale_explorer.png"  
       alt="Scale Explorer Logo"
-      width={600}      
-      height={500}
+      width={450}      
+      height={375}
       className="mx-auto invert dark:invert-0 pt-10"
     />
   </div>
