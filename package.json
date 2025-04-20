@@ -1,8 +1,13 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "bcryptjs": "^3.0.2",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
     "next-auth": "^5.0.0-beta.26"
+=======
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2"
+>>>>>>> d0075313abf185b2c7fd602b0d2369a9ce537584
   }
 }

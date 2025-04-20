@@ -8,7 +8,6 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import { doLogout } from "../app/actions/index";
 import Button from "@/components/Button"
-import { useRouter } from 'next/navigation';
 
 // interface Session {
 //   user?: {
@@ -23,7 +22,6 @@ interface NavbarProps {
 }
 
 const Navbar = ({ session }: NavbarProps) => {
-  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -50,7 +48,7 @@ const Navbar = ({ session }: NavbarProps) => {
 
       {/* middle - logo */}
       <div className="flex-1 flex justify-center relative z-20">
-        <a href="/" className="cursor-pointer inline-block">
+        <a href="/scale-list" className="cursor-pointer inline-block">
           <Image
             src="/scale_explorer2.png"
             alt="Logo"

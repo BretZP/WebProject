@@ -15,7 +15,7 @@ export default function LoginForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
 
@@ -27,6 +27,7 @@ export default function LoginForm() {
         router.push("/scale-list");
       }
     } catch (err) {
+      alert("User not found");
       console.error("LOGIN ERROR: " + err);
       setError("Something went wrong.");
     }
