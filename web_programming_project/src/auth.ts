@@ -2,8 +2,8 @@ import { authConfig } from "./auth.config";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import connectMongoDB from "@/mongodb";
-import User from "@/models/userSchema";
+import User from "./models/userSchema"; 
+import connectMongoDB from "./mongodb";  
 
 export const {
   handlers: { GET, POST },
@@ -19,21 +19,36 @@ export const {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) return null;
+        if (!credentials) return null;
 
-        await connectMongoDB();
-        const user = await User.findOne({ username: credentials.username }).lean();
-        if (!user) return null;
+        const { username, password } = credentials;
 
-        const isMatch = await bcrypt.compare(credentials.password, user.password);
-        if (!isMatch) return null;
+        try {
+          await connectMongoDB();
 
-        return {
-          id: user._id.toString(),
-          username: user.username,
-        };
+          const user = await User.findOne({ username }).lean();
+
+          if (!user) {
+            console.log("User not found");
+            return null;
+          }
+
+          const isMatch = await bcrypt.compare(password, user.password);
+
+          if (!isMatch) {
+            console.log("Invalid password");
+            return null;
+          }
+
+          return {
+            id: user._id.toString(),
+            username: user.username,
+          };
+        } catch (error) {
+          console.error("An error occurred during login:", error);
+          return null;
+        }
       },
     }),
   ],
-  secret: process.env.AUTH_SECRET,
 });
