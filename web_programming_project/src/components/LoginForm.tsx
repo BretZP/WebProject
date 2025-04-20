@@ -1,72 +1,60 @@
 'use client';
 
 import { useState } from 'react';
-import React from 'react';
-import '@/app/globals.css';
+import { useRouter } from 'next/navigation';
+import { doCredentialLogin } from '@/actions';
 import Button from "@/components/Button";
 
-interface NewUser {
-    _id: number;
-    username: string;
-    password: string;
-}
+export default function LoginForm() {
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [error, setError] = useState('');
+  const router = useRouter();
 
-interface LoginFormProps {
-    onLogin: (user: NewUser) => void;
-};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-export default function LoginForm({ onLogin }: LoginFormProps) {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    try {
+      const response = await doCredentialLogin(new FormData(e.currentTarget));
+      if (response?.error) {
+        setError("Invalid credentials");
+      } else {
+        router.push("/form-submit");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong.");
+    }
+  };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (formData.username != '' && formData.password != '') {
-            const newUser: NewUser = {
-                _id: Math.floor(Math.random() * 100000), // random ID
-                ...formData
-            };
-            onLogin(newUser);
-            setFormData({ username: '', password: '' });
-        }
-    };
-
-    return (
-        <form onSubmit={handleSubmit} className="h-auto w-full space-y-4 p-4 rounded-lg">
-            <p>Username</p>
-            <input
-                name="username"
-                type="text"
-                value={formData.username}
-                onChange={handleChange}
-                placeholder="Username"
-                required
-                className="w-3/4 p-2 border rounded-lg"
-            />
-            <br></br>
-            <p>Password</p>
-            <input
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Password"
-                required
-                className="w-3/4 p-2 border rounded-lg mb-8"
-            />
-            <br></br>
-            <Button type="submit">Login</Button>
-        </form>
-    )
+  return (
+    <form onSubmit={handleSubmit} className="h-auto w-full space-y-4 p-4 rounded-lg">
+      <p>Username</p>
+      <input
+        name="username"
+        type="text"
+        value={formData.username}
+        onChange={handleChange}
+        required
+        className="w-3/4 p-2 border rounded-lg"
+      />
+      <p>Password</p>
+      <input
+        name="password"
+        type="password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+        className="w-3/4 p-2 border rounded-lg mb-8"
+      />
+      <br></br>
+      <Button type="submit">Login</Button>
+      
+    </form>
+  );
 }

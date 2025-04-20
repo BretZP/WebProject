@@ -13,7 +13,6 @@ const SongList = ({ isLoggedIn = true }: SongListProps)  => {
     const [searchQuery, setSearchQuery] = useState('');
 
 
-
     const filteredScales = scaleCards.filter(card => {
         const trimmedQuery = searchQuery.trim().toLowerCase();
         if (!trimmedQuery) return true;

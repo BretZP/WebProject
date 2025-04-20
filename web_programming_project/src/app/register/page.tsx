@@ -10,10 +10,31 @@ const Register = () => {
         password: string;
     }
 
-    const handleAddUser = (newUser:User) => {
-        console.log(`Username: ${newUser.username} | Password: ${newUser.password} added.
-            This is a placeholder function for until we implement MongoDB connection.`);
-    }
+    const handleAddUser = async (newUser: User) => {
+        try {
+          const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username: newUser.username,
+              password: newUser.password
+            })
+          });
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            alert("Registration successful!");
+          } else {
+            alert(`Registration failed: ${data.message}`);
+          }
+        } catch (error) {
+          console.error("Registration error:", error);
+          alert("Something went wrong during registration.");
+        }
+      };
 
     return (
         <div className="flex grow-0 shrink-1 basis-0 items-center justify-center w-full min-h-full">
