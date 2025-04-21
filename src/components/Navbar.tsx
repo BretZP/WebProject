@@ -60,11 +60,11 @@ const Navbar = ({ session }: NavbarProps) => {
       </div>
 
       {/* right - auth status */}
-      <ul className="flex list-none gap-6 m-0 p-0">
+      <ul className="flex align-center list-none gap-6 m-0 p-0">
         {isLoggedIn && session?.user ? (
           <>
-            <li>
-              <span>Welcome, {session.user?.name}!</span>
+            <li className = "flex align-center justify-center">
+              <span className = "p-2">Welcome, {session.user?.name}!</span>
             </li>
             <li>
               <Button onClick={handleLogout}>Logout</Button>
