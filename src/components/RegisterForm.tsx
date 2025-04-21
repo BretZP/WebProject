@@ -34,11 +34,7 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 
         if (formData.username != '' && formData.password != '') {
             const newUser: NewUser = {
-<<<<<<< HEAD
                 _id: Math.floor(Math.random() * 100000), // random ID
-=======
-                _id: Math.floor(Math.random() * 100000), 
->>>>>>> 018a7f6 (Auth set up)
                 ...formData
             };
             onRegister(newUser);
