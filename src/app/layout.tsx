@@ -32,7 +32,6 @@ export default async function RootLayout({
 }>) {
   
   const session = await auth();
-  console.log('session: ' + JSON.stringify(session));
 
   return (
     <html className="min-h-full overflow-hidden" lang="en">
