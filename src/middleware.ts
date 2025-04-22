@@ -14,7 +14,7 @@ const middleware = async (request: NextRequest) => {
   const publicPaths = ["/", "/login", "/register"];
 
   if (!isAuthenticated && !publicPaths.includes(pathname)) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();
