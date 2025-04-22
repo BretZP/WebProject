@@ -1,9 +1,10 @@
-import { authConfig } from "./auth.config";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import User from "./models/userSchema"; 
-import connectMongoDB from "./mongodb";  
+import User from "./models/userSchema";
+import connectMongoDB from "./mongodb";
+import { authConfig } from "./auth.config";
+import { AuthError } from "next-auth";
 
 export const {
   handlers: { GET, POST },
@@ -14,59 +15,75 @@ export const {
   ...authConfig,
   providers: [
     CredentialsProvider({
+      name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
-        if (!credentials) return null;
+      async authorize(credentials): Promise<any> {
+        console.log("[Auth.ts Authorize] Validating credentials for:", credentials?.username);
+
+        if (!credentials?.username || !credentials?.password) {
+          console.log("[Auth.ts Authorize] Missing credentials.");
+          return null;
+        }
 
         const { username, password } = credentials;
+        const trimmedUsername = username.trim();
 
         try {
           await connectMongoDB();
+          console.log(`[Auth.ts Authorize] Finding user: "${trimmedUsername}"`);
 
-          const user = await User.findOne({ username }).lean();
+          const user = await User.findOne({ username: trimmedUsername })
+                                 .select('+password')
+                                 .lean();
 
           if (!user) {
-            console.log("User not found");
-            alert("User not found");
+            console.log(`[Auth.ts Authorize] User not found: "${trimmedUsername}"`);
             return null;
           }
 
-          const isMatch = await bcrypt.compare(password, user.password);
+          if (!user.password) {
+             console.error(`[Auth.ts Authorize] Password field missing for user ${user.username}. Check DB/Schema.`);
+             return null;
+          }
 
-          if (!isMatch) {
-            console.log("Invalid password");
+          console.log(`[Auth.ts Authorize] Comparing password for ${user.username}...`);
+          const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+          if (!isPasswordCorrect) {
+            console.log(`[Auth.ts Authorize] Password incorrect for ${user.username}.`);
             return null;
           }
 
+          console.log(`[Auth.ts Authorize] Credentials valid for ${user.username}.`);
           return {
             id: user._id.toString(),
-            name: user.username,
+            username: user.username,
           };
+
         } catch (error) {
-          console.error("An error occurred during login:", error);
+          console.error("[Auth.ts Authorize] Unexpected error during authorization:", error);
           return null;
         }
       },
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-      }
-      return session;
-    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.name = user.name;
+        token.username = user.username;
       }
       return token;
     },
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id as string;
+        session.user.name = token.username as string;
+      }
+      return session;
+    },
   },
-
 });

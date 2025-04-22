@@ -1,43 +1,47 @@
+// src/app/layout.tsx
+'use client';
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google"; // Assuming Geist comes from here
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import {auth} from "../auth";
+import { SessionProvider } from "next-auth/react";
+import React from "react";
 
+// Font definitions
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"], // <-- ADD THIS LINE
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"], // This one was likely correct already
 });
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"],
+  subsets: ["latin"], // This one was likely correct already
 });
 
-export const metadata: Metadata = {
-  title: "Scale Explorer",
-  description: "Search for scales!",
-};
+// Metadata definition ...
+// export const metadata: Metadata = { ... };
 
-
-export default async function RootLayout({
+// RootLayout component ...
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
-  const session = await auth();
-
   return (
-    <html className="min-h-full overflow-hidden" lang="en">
+    // --- ADD FONT VARIABLES TO HTML TAG ---
+    <html className={`min-h-full overflow-hidden ${geistSans.variable} ${geistMono.variable} ${inter.variable}`} lang="en">
+    {/* --- END FONT VARIABLES --- */}
       <body>
-        <Navbar session={session} />
-        {children}
+        <SessionProvider>
+          <Navbar session={null} />
+          <main>{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -3,96 +3,67 @@
 import React from "react";
 import "@/app/globals.css";
 import { HomeIcon } from "@heroicons/react/24/solid";
-import { useState, useEffect } from 'react';
 import Image from "next/image";
-import { Session } from "next-auth";
-import { doLogout } from "../app/actions/index";
-import Button from "@/components/Button"
+import { useSession, signOut } from "next-auth/react";
+import Button from "@/components/Button";
 
-// interface Session {
-//   user?: {
-//     name: string;
-//     email?: string;
-//     image?: string;
-//   };
-// }
+const Navbar = () => {
+    const { data: session, status } = useSession();
 
-interface NavbarProps {
-  session: Session | null;
-}
+    const handleLogout = async () => {
+        await signOut();
+    };
 
-const Navbar = ({ session }: NavbarProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+    return (
+        <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4 fixed z-10">
+            <div className="text-lg font-semibold">
+                <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
+                    <HomeIcon className="h-6 w-6" />
+                </a>
+            </div>
 
-  useEffect(() => {
-    setIsLoggedIn(!!session?.user);
-  }, [session]);
+            <div className="flex-1 flex justify-center relative z-20">
+                <a href="/scale-list" className="cursor-pointer inline-block">
+                    <Image
+                        src="/scale_explorer2.png"
+                        alt="Logo"
+                        width={220}
+                        height={40}
+                        className="object-contain"
+                    />
+                </a>
+            </div>
 
-  const handleLogout = () => {
-    doLogout();
-    setIsLoggedIn(!!session?.user);
-    console.log("User logged out");
-  }
+            <ul className="flex items-center list-none gap-6 m-0 p-0">
+                {status === "loading" && (
+                    <li><span className="text-sm text-gray-400">Loading...</span></li>
+                )}
 
-  return (
-    <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4 fixed z-10">
-      {/* left - home button */}
-      <div className="text-lg font-semibold">
+                {status === "authenticated" && session?.user && (
+                    <>
+                        <li className="flex items-center">
+                            <span className="p-2 text-sm text-white">
+                                Welcome, {session.user?.name || 'User'}!
+                            </span>
+                        </li>
+                        <li>
+                            <Button onClick={handleLogout} size="sm" variant="outline">
+                                Logout
+                            </Button>
+                        </li>
+                    </>
+                )}
 
-        <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
-          <HomeIcon className="h-6 w-6" />
-
-
-        </a>
-      </div>
-
-      {/* middle - logo */}
-      <div className="flex-1 flex justify-center relative z-20">
-        <a href="/scale-list" className="cursor-pointer inline-block">
-          <Image
-            src="/scale_explorer2.png"
-            alt="Logo"
-            width={220}
-            height={40}
-            className="object-contain"
-          />
-        </a>
-      </div>
-
-      {/* right - auth status */}
-      <ul className="flex align-center list-none gap-6 m-0 p-0">
-        {isLoggedIn && session?.user ? (
-          <>
-            <li className = "flex align-center justify-center">
-              <span className = "p-2">Welcome, {session.user?.name}!</span>
-            </li>
-            <li>
-              <Button onClick={handleLogout}>Logout</Button>
-            </li>
-          </>
-        ) : (
-          <li>
-            <a
-              href="/login"
-              className="text-sm text-foreground no-underline hover:opacity-80 transition-opacity font-[family-name:var(--font-geist-mono)]"
-            >
-              Login
-            </a>
-          </li>
-        )}
-        {/* <li>
-          <a
-            href="/login"
-            className="text-sm text-foreground no-underline hover:opacity-80 transition-opacity font-[family-name:var(--font-geist-mono)]"
-            onClick={handleLogin}
-          >
-            Login
-          </a>
-        </li> */}
-      </ul>
-
-    </nav>
-  );
-}
+                {status === "unauthenticated" && (
+                    <li>
+                        <a href="/login" className="text-sm text-white no-underline hover:opacity-80">
+                            Login
+                        </a>
+                    </li>
+                )}
+            </ul>
+        </nav>
+    );
+};
 
 export default Navbar;

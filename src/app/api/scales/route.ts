@@ -1,16 +1,24 @@
-import connectMongoDB from "@/mongodb";
-import Scale from "@/models/scaleSchema";
-import {NextResponse, NextRequest} from "next/server";
+import { NextResponse } from 'next/server';
+import connectMongoDB from '@/mongodb';
+import UserSong, { IUserSong } from '@/models/userSongSchema';
+import { auth } from '@/auth';
 
-export async function GET(request: NextRequest) {
-    await connectMongoDB();
-    const scales = await Scale.find();
-    return NextResponse.json({scales});
-}
+export async function GET(request: Request) {
+    const session = await auth();
+    const userId = session?.user?.id;
 
-export async function POST(request: NextRequest) {
-    const {name, songs} = await request.json();
-    await connectMongoDB();
-    await Scale.create({name, songs});
-    return NextResponse.json({message: "Item added successfully"}, {status: 201});
+    try {
+        await connectMongoDB();
+
+        let userSongs: IUserSong[] = [];
+        if (userId) {
+            userSongs = await UserSong.find({ userId }).sort({ createdAt: -1 });
+        }
+
+        return NextResponse.json({ songs: userSongs }, { status: 200 });
+
+    } catch (error) {
+        console.error("Error fetching user songs:", error);
+        return NextResponse.json({ message: "Internal Server Error fetching songs." }, { status: 500 });
+    }
 }

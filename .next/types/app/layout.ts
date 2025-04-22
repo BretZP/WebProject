@@ -1,4 +1,4 @@
-// File: C:\Users\bzubi\Desktop\WebAuth3\src\app\layout.tsx
+// File: /Users/rajbiradar/Documents/UGA/Spring 2025/CSCI4300 Web/music_web_project/WebProject/src/app/layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

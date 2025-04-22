@@ -1,3 +1,7 @@
 {
-  "/page": "app/page.js"
+  "/api/auth/[...mextauth]/route": "app/api/auth/[...mextauth]/route.js",
+  "/api/scales/route": "app/api/scales/route.js",
+  "/scale-list/page": "app/scale-list/page.js",
+  "/form-submit/page": "app/form-submit/page.js",
+  "/login/page": "app/login/page.js"
 }
