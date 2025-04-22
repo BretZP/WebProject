@@ -112,6 +112,7 @@ export default function ScaleListPage() {
     return (
         <div className="min-h-screen bg-black pt-16 p-4">
             <div className="container max-w-2xl mx-auto flex flex-col gap-6 text-white">
+                <div></div>
                 <input
                     type="text"
                     placeholder="Search scales, notes, chords, or added songs..."
