@@ -1,1 +1,2 @@
 # WebProject
+This program allows a user to search for a musical scale based on user input. The user input will be inputted via a search bar. The user can search for scales based on a note or chord in the scale. A user can also improve their search by searching for a scale using two or more notes in the search bar. A logged in user can add songs that on in a particular key and also add notes that they may want to remember when they are practicing that scale.
