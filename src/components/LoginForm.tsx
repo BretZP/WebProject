@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { doCredentialLogin } from '@/app/actions';
 import Button from "@/components/Button";
+// import { useRouter } from 'next/compat/router';
 
 export default function LoginForm() {
+  // const router = useRouter();
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +25,8 @@ export default function LoginForm() {
       const response = await doCredentialLogin(new FormData(e.currentTarget));
       if (response?.error) {
         setError(response.error);
+      } else {
+        // router.push("/scale-list");
       }
     } catch (err) {
       console.error("LOGIN FORM CATCH ERROR: " + err);

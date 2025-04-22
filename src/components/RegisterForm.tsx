@@ -4,6 +4,7 @@ import { useState } from 'react';
 import React from 'react';
 import '@/app/globals.css';
 import Button from "@/components/Button";
+// import { useRouter } from 'next/compat/router';
 
 interface NewUser {
     _id: number;
@@ -16,6 +17,7 @@ interface RegisterFormProps {
 };
 
 export default function RegisterForm({ onRegister }: RegisterFormProps) {
+    // const router = useRouter()
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -39,6 +41,7 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
             };
             onRegister(newUser);
             setFormData({ username: '', password: '' });
+            // router.push("/login");
         }
     };
 

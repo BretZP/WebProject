@@ -183,7 +183,7 @@ export default function ScaleListPage() {
     return (
         <div className="min-h-screen bg-black pt-16 p-4">
             <div className="container max-w-2xl mx-auto flex flex-col gap-6 text-white">
-                <div></div>
+                {/* <div></div> */}
                 <input
                     type="text"
                     placeholder="Search scales, notes, chords, songs, or your notes..."
@@ -217,18 +217,10 @@ export default function ScaleListPage() {
                             userNoteText={noteForThisCard} 
                             onSaveNote={handleSaveNote} 
                         >
-<<<<<<< HEAD
                             <Link
                                 href={`/form-submit?scale=${encodeURIComponent(card.title)}`}
                                 className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors block text-center w-full"
                             >
-=======
-                           {/* Link to Add Song Form Page */}
-                           <a
-                               href={`/form-submit?scale=${encodeURIComponent(card.title)}`}
-                               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors block text-center w-full"
-                           >
->>>>>>> ae7622cbdbb146eb01fcf2aa20ca7ef95ac1dde1
                                 Add Song to "{card.title}"
                             </Link>
                         </Card>

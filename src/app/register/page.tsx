@@ -11,6 +11,7 @@ const Register = () => {
         password: string;
     }
 
+
     const handleAddUser = async (newUser: User) => {
         try {
           const response = await fetch("/api/register", {
