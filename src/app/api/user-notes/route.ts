@@ -1,24 +1,24 @@
-// src/app/api/user-notes/route.ts
+
 import { NextResponse } from 'next/server';
 import connectMongoDB from '@/mongodb';
 import UserScaleNote from '@/models/userScaleNoteSchema';
 import { auth } from '@/auth';
 
-// --- GET Handler: Fetch all notes for the logged-in user ---
+
 export async function GET(request: Request) {
     const session = await auth();
     const userId = session?.user?.id;
 
     if (!userId) {
-        // Not an error, just means no user-specific notes to fetch
-        return NextResponse.json({ notes: {} }); // Return empty object
+
+        return NextResponse.json({ notes: {} }); 
     }
 
     try {
         await connectMongoDB();
         const notes = await UserScaleNote.find({ userId });
 
-        // Convert array of notes into a Record<string, string> for easier frontend use
+
         const notesMap: Record<string, string> = {};
         notes.forEach(note => {
             notesMap[note.scaleName] = note.notesText;
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
 }
 
 
-// --- POST Handler: Create or Update (Upsert) a note ---
+
 export async function POST(request: Request) {
     const session = await auth();
     const userId = session?.user?.id;
@@ -49,13 +49,13 @@ export async function POST(request: Request) {
             return NextResponse.json({ message: "Missing or invalid scaleName or notesText" }, { status: 400 });
         }
 
-        // Find existing note or create/update it (upsert)
+
         const updatedNote = await UserScaleNote.findOneAndUpdate(
-            { userId, scaleName }, // Filter: find note for this user and scale
-            { $set: { notesText: notesText } }, // Update: set the notesText
+            { userId, scaleName }, 
+            { $set: { notesText: notesText } }, 
             {
-                new: true, // Return the updated document
-                upsert: true // Create if doesn't exist
+                new: true, 
+                upsert: true 
             }
         );
 
