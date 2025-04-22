@@ -6,6 +6,7 @@ import { HomeIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 const Navbar = () => {
     const { data: session, status } = useSession();
@@ -17,13 +18,13 @@ const Navbar = () => {
     return (
         <nav className="w-full flex justify-between items-center bg-accent-background rounded-lg px-6 py-4 fixed z-10">
             <div className="text-lg font-semibold">
-                <a href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
+                <Link href="/" className="color-text no-underline hover:opacity-80 transition-opacity">
                     <HomeIcon className="h-6 w-6" />
-                </a>
+                </Link>
             </div>
 
             <div className="flex-1 flex justify-center relative z-20">
-                <a href="/scale-list" className="cursor-pointer inline-block">
+                <Link href="/scale-list" className="cursor-pointer inline-block">
                     <Image
                         src="/scale_explorer2.png"
                         alt="Logo"
@@ -31,7 +32,7 @@ const Navbar = () => {
                         height={40}
                         className="object-contain"
                     />
-                </a>
+                </Link>
             </div>
 
             <ul className="flex items-center list-none gap-6 m-0 p-0">
@@ -56,9 +57,9 @@ const Navbar = () => {
 
                 {status === "unauthenticated" && (
                     <li>
-                        <a href="/login" className="text-sm text-white no-underline hover:opacity-80">
+                        <Link href="/login" className="text-sm text-white no-underline hover:opacity-80">
                             Login
-                        </a>
+                        </Link>
                     </li>
                 )}
             </ul>

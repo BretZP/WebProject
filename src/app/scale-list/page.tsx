@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import Card from '../../components/card';
 import { scaleCards, ScaleCard } from "@/components/scales";
 import { IUserSong } from '@/models/userSongSchema';
+import Link from 'next/link';
 
 export default function ScaleListPage() {
     const { data: session, status } = useSession();
@@ -141,12 +142,12 @@ export default function ScaleListPage() {
                             temporarySongTitles={userTitlesForCard}
                             onDeleteTemporarySong={handleDeleteSong}
                         >
-                            <a
+                            <Link
                                 href={`/form-submit?scale=${encodeURIComponent(card.title)}`}
                                 className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors block text-center w-full"
                             >
                                 Add Song to "{card.title}"
-                            </a>
+                            </Link>
                         </Card>
                     );
                 })}
