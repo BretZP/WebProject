@@ -1,6 +1,3 @@
-
-'use client';
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google"; 
 import "./globals.css";
@@ -24,6 +21,11 @@ const inter = Inter({
   subsets: ["latin"], 
 });
 
+export const metadata: Metadata = {
+  title: "Scale Explorer",
+  description: "Search for scales!",
+};
+
 
 
 export default function RootLayout({
@@ -31,13 +33,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     
     <html className={`min-h-full overflow-hidden ${geistSans.variable} ${geistMono.variable} ${inter.variable}`} lang="en">
     
       <body>
         <SessionProvider>
-          <Navbar session={null} />
+          <Navbar/>
           <main>{children}</main>
         </SessionProvider>
       </body>
