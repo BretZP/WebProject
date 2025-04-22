@@ -21,10 +21,10 @@ export const {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials): Promise<any> {
-        console.log("[Auth.ts Authorize] Validating credentials for:", credentials?.username);
+        console.log(" Validating credentials for:", credentials?.username);
 
         if (!credentials?.username || !credentials?.password) {
-          console.log("[Auth.ts Authorize] Missing credentials.");
+          console.log("Missing credentials.");
           return null;
         }
 
@@ -33,38 +33,38 @@ export const {
 
         try {
           await connectMongoDB();
-          console.log(`[Auth.ts Authorize] Finding user: "${trimmedUsername}"`);
+          console.log(`Finding user: "${trimmedUsername}"`);
 
           const user = await User.findOne({ username: trimmedUsername })
                                  .select('+password')
                                  .lean();
 
           if (!user) {
-            console.log(`[Auth.ts Authorize] User not found: "${trimmedUsername}"`);
+            console.log(`User not found: "${trimmedUsername}"`);
             return null;
           }
 
           if (!user.password) {
-             console.error(`[Auth.ts Authorize] Password field missing for user ${user.username}. Check DB/Schema.`);
+             console.error(` Password field missing for user ${user.username}. Check DB/Schema.`);
              return null;
           }
 
-          console.log(`[Auth.ts Authorize] Comparing password for ${user.username}...`);
+          console.log(` Comparing password for ${user.username}...`);
           const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
           if (!isPasswordCorrect) {
-            console.log(`[Auth.ts Authorize] Password incorrect for ${user.username}.`);
+            console.log(` Password incorrect for ${user.username}.`);
             return null;
           }
 
-          console.log(`[Auth.ts Authorize] Credentials valid for ${user.username}.`);
+          console.log(` Credentials valid for ${user.username}.`);
           return {
             id: user._id.toString(),
             username: user.username,
           };
 
         } catch (error) {
-          console.error("[Auth.ts Authorize] Unexpected error during authorization:", error);
+          console.error(" Unexpected error during authorization:", error);
           return null;
         }
       },
