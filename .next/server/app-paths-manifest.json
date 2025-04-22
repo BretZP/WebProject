@@ -1,5 +1,11 @@
 {
-  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/auth/[...mextauth]/route": "app/api/auth/[...mextauth]/route.js",
+  "/api/register/route": "app/api/register/route.js",
+  "/api/scales/route": "app/api/scales/route.js",
+  "/api/user-notes/route": "app/api/user-notes/route.js",
+  "/scale-list/page": "app/scale-list/page.js",
   "/login/page": "app/login/page.js",
-  "/scale-list/page": "app/scale-list/page.js"
+  "/form-submit/page": "app/form-submit/page.js",
+  "/register/page": "app/register/page.js"
 }
