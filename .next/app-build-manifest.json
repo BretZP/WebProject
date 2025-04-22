@@ -32,11 +32,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/scales/route.js"
     ],
-    "/form-submit/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/form-submit/page.js"
-    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
