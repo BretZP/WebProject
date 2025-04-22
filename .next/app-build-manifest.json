@@ -22,35 +22,41 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/auth/[...mextauth]/route.js"
     ],
-    "/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
-    ],
     "/scale-list/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/scale-list/page.js"
     ],
-    "/_not-found/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/login/page.js"
     ],
-    "/api/user-notes/route": [
+    "/form-submit/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/user-notes/route.js"
+      "static/chunks/app/form-submit/page.js"
+    ],
+    "/register/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/register/page.css",
+      "static/chunks/app/register/page.js"
+    ],
+    "/api/register/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/register/route.js"
     ],
     "/api/scales/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/scales/route.js"
     ],
-    "/form-submit/page": [
+    "/api/user-notes/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/form-submit/page.js"
+      "static/chunks/app/api/user-notes/route.js"
     ]
   }
 }

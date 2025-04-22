@@ -141,30 +141,35 @@ export default function ScaleListPage() {
         } catch (err: any) {
             setError(`Delete failed: ${err.message}`);
         }
-    }, [isLoggedIn, fetchUserSongs]); 
+    }, [isLoggedIn, fetchUserSongs]);
 
-    
-    const handleSaveNote = useCallback(async (scaleName: string, notesText: string): Promise<void> => { 
+
+    const handleSaveNote = useCallback(async (scaleName: string, notesText: string): Promise<void> => {
         if (!isLoggedIn) { alert("You must be logged in."); return Promise.reject("Not logged in"); }
         setError(null);
         try {
+            const method = notesText ? 'PUT' : 'POST';
             const response = await fetch('/api/user-notes', {
-                method: 'POST',
+                method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ scaleName, notesText }),
             });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.message || `Failed to save note.`);
-            
+
+            // Handle empty response
+            const text = await response.text();
+            const result = text ? JSON.parse(text) : {};
+
+            if (!response.ok) {
+                throw new Error(result.message || `Failed to save note. Status: ${response.status}`);
+            }
+
             setUserNotes(prev => ({ ...prev, [scaleName]: notesText }));
-           
             return Promise.resolve();
         } catch (err: any) {
             setError(`Save note failed: ${err.message}`);
-            
             return Promise.reject(err);
         }
-    }, [isLoggedIn]); 
+    }, [isLoggedIn]);
 
 
     
