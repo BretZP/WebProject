@@ -13,42 +13,48 @@ export const scaleCards: ScaleCard[] = [
         title: "C Major / C Minor",
         notes: "Notes: C, D, E, F, G, A, B",
         chords: ["C", "Dm", "Em", "F", "G", "Am", "Bdim"],
-        songs: ["Let it be, Beatles", "Californication, Red Hot Chili Peppers"],
+        // songs: ["Let it be, Beatles", "Californication, Red Hot Chili Peppers"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow"
     },
     {
         title: "G Major",
         notes: "Notes: G, A, B, C, D, E, F#",
         chords: ["G", "Am", "Bm", "C", "D", "Em", "F#dim"],
-        songs: ["Enter Sandman, Metallica", "Ring of fire, Johny Cash"],
+        // songs: ["Enter Sandman, Metallica", "Ring of fire, Johny Cash"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow"
     },
     {
         title: "D Major",
         notes: "Notes: D, E, F#, G, A, B, C#",
         chords: ["D", "Em", "F#m", "G", "A", "Bm", "C#dim"],
-        songs: ["Hotel California, The Eagles"],
+        // songs: ["Hotel California, The Eagles"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow"
     },
     {
         title: "A Major",
         notes: "Notes: A, B, C#, D, E, F#, G#",
         chords: ["A", "Bm", "C#m", "D", "E", "F#m", "G#dim"],
-        songs: ["Wonderwall, Oasis", "Numb, Meteora, Linkin Park"],
+        // songs: ["Wonderwall, Oasis", "Numb, Meteora, Linkin Park"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow"
     },
     {
         title: "E Major",
         notes: "Notes: E, F#, G#, A, B, C#, D#",
         chords: ["E", "F#m", "G#m", "A", "B", "C#m", "D#dim"],
-        songs: ["John Mayor - Slow Dancing In A Burning Room"],
+        // songs: ["John Mayor - Slow Dancing In A Burning Room"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow"
     },
     {
         title: "B Major",
         notes: "Notes: B, C#, D#, E, F#, G#, A#",
         chords: ["B", "C#m", "D#m", "E", "F#", "G#m", "A#dim"],
-        songs: ["Heart Shaped Box"],
+        // songs: ["Heart Shaped Box"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow"
     },
     {
@@ -118,7 +124,8 @@ export const scaleCards: ScaleCard[] = [
         title: "F Minor",
         notes: "Notes: F, G, A♭, B♭, C, D♭, E♭",
         chords: ["Fm", "Gdim", "A♭", "B♭m", "Cm", "D♭", "E♭"],
-        songs: ["Dream On, Aerosmith"],
+        // songs: ["Dream On, Aerosmith"],
+        songs: [],
         className: "hover:shadow-lg transition-shadow",
     },
     {
